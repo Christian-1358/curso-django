@@ -1,0 +1,1 @@
+aulas 11, 12 e tals, estao juntos com a aula 10, pois sao partes 2 de codigos de aprendizado
