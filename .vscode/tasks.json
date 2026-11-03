@@ -1,0 +1,68 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"label": "Testar servidor Django na porta 8001",
+			"type": "shell",
+			"command": "/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/.venv/bin/python",
+			"args": [
+				"/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/manage.py",
+				"runserver",
+				"127.0.0.1:8001",
+				"--noreload"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Testar Django na porta 8002",
+			"type": "shell",
+			"command": "/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/.venv/bin/python",
+			"args": [
+				"/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/manage.py",
+				"runserver",
+				"127.0.0.1:8002",
+				"--noreload"
+			],
+			"isBackground": true,
+			"problemMatcher": []
+		},
+		{
+			"label": "Identificar processo na porta 8002",
+			"type": "shell",
+			"command": "ss",
+			"args": [
+				"-ltnp",
+				"sport",
+				"=",
+				" :8002"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Liberar porta Django 8002",
+			"type": "shell",
+			"command": "kill",
+			"args": [
+				"-INT",
+				"13268"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Confirmar porta 8002 livre",
+			"type": "shell",
+			"command": "ss",
+			"args": [
+				"-ltnp",
+				"sport",
+				"=",
+				" :8002"
+			],
+			"isBackground": false,
+			"problemMatcher": []
+		}
+	]
+}

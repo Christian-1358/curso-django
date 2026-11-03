@@ -1,0 +1,1 @@
+nao tem nada pra fazer era sobre tipos de erros e tradamentos de erros
