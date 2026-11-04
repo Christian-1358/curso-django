@@ -1,0 +1,18 @@
+
+
+
+{
+"[python]": {
+    "editor.quickSuggestions": {
+        "other": "off",
+        "comments": "off",
+        "strings": "off"
+    },
+    "editor.suggestOnTriggerCharacters": false,
+    "editor.inlineSuggest.enabled": false,
+    "editor.wordBasedSuggestions": "off",
+    "editor.parameterHints.enabled": false
+}
+
+}
+

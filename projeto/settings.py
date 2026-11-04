@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # A gente tem apps tambme  
+    'recipes'
 ]
 
 MIDDLEWARE = [
@@ -54,7 +56,11 @@ ROOT_URLCONF = 'projeto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            # add os templates que nao estao dentro da pasta do projeto em ci, exemplo: 
+        BASE_DIR / 'base_templates' # template/arquivos que estao fora da pasta do django
+    
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
