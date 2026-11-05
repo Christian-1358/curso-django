@@ -24,6 +24,7 @@
 - [Rotas com `path()` e views](#rotas-com-path-e-views)
 - [Separar rotas com `include()`](#separar-rotas-com-include)
 - [Usar `render()` para enviar dados ao HTML](#usar-render-para-enviar-dados-ao-html)
+- [Reutilizar templates com `{% include %}`](#reutilizar-templates-com-include)
 - [Entender `request`](#request)
 - [Entender `HttpResponse`](#httpresponse)
 - [Consultar códigos de status HTTP](#link-para-poder-ver-os-codigos-de-erro-em-web)
@@ -340,6 +341,30 @@ exemplo:
   {% endfor %}
 </ul>
 ```
+
+## REUTILIZAR TEMPLATES COM `{% include %}`
+
+O template tag `{% include %}` insere o conteúdo processado de outro template
+no ponto em que aparece. Ele é útil para reaproveitar partes da página, como
+cabeçalho, navegação ou rodapé.
+
+Por exemplo, para incluir o arquivo
+`recipes/templates/recipes/partials/head.html` em
+`recipes/templates/recipes/pages/home.html`, use o caminho relativo à pasta
+`templates/` do app:
+
+```django
+{% include 'recipes/partials/head.html' %}
+```
+
+O nome do template precisa estar entre aspas; `{% include "" %}` não informa
+qual arquivo deve ser incluído. O template incluído recebe o contexto atual por
+padrão, então pode acessar variáveis como `{{ name }}` que foram enviadas pela
+view.
+
+Este uso é diferente de `include()` em `projeto/urls.py`: a função Python
+`include()` encaminha rotas para outro arquivo `urls.py`, enquanto
+`{% include %}` reutiliza um template HTML.
 
 ### 3. Conecte a view à URL
 
