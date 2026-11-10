@@ -25,6 +25,7 @@
 - [Separar rotas com `include()`](#separar-rotas-com-include)
 - [Usar `render()` para enviar dados ao HTML](#usar-render-para-enviar-dados-ao-html)
 - [Reutilizar templates com `{% include %}`](#reutilizar-templates-com-include)
+- [Carregar arquivos estáticos, como CSS](#carregar-arquivos-estáticos-como-css)
 - [Entender `request`](#request)
 - [Entender `HttpResponse`](#httpresponse)
 - [Consultar códigos de status HTTP](#link-para-poder-ver-os-codigos-de-erro-em-web)
@@ -175,6 +176,11 @@ Entendendo cada parte:
   como `'inicio/'`.
 - `urlpatterns` é a lista de rotas que o Django consulta.
 
+Para ver como referenciar rotas dentro dos templates, consulte a
+[documentação oficial do Django 3.2 sobre URLs](https://docs.djangoproject.com/en/3.2/topics/http/urls/).
+Em templates, a tag `{% url 'nome_da_rota' %}` gera o endereço associado a uma
+rota nomeada.
+
 ## SEPARAR ROTAS COM `include()`
 
 Em projetos com vários apps, é útil deixar cada app responsável por suas
@@ -212,6 +218,28 @@ urlpatterns = [
 do app ficam disponíveis como `/`, `/sobre/` e `/contato/`. Se, por exemplo,
 o prefixo fosse `'receitas/'`, eles ficariam `/receitas/`,
 `/receitas/sobre/` e `/receitas/contato/`.
+
+## PARÂMETROS NA ROTA
+
+Uma rota pode capturar um valor do endereço e enviar esse valor para a view.
+Por exemplo, em `recipes/urls.py`:
+
+```python
+path('recipes/<int:id>/', views.recipe),
+```
+
+`<int:id>` é um conversor de caminho: `int` indica que o trecho deve ser um
+número inteiro, e `id` é o nome do parâmetro enviado à view. Assim, ao acessar
+`/recipes/42/`, o Django chama a view como `views.recipe(request, id=42)`.
+A view deve receber esse parâmetro:
+
+```python
+def recipe(request, id):
+    ...
+```
+
+Para consultar mais detalhes sobre conversores e parâmetros de URL, veja a
+[documentação oficial sobre padrões de URL do Django 3.2](https://docs.djangoproject.com/en/3.2/topics/http/urls/#path-converters).
 
 Assim, `projeto/urls.py` centraliza a ligação entre o projeto e os apps, e cada
 app pode manter suas rotas em seu próprio `urls.py`.
@@ -365,6 +393,30 @@ view.
 Este uso é diferente de `include()` em `projeto/urls.py`: a função Python
 `include()` encaminha rotas para outro arquivo `urls.py`, enquanto
 `{% include %}` reutiliza um template HTML.
+
+## CARREGAR ARQUIVOS ESTÁTICOS, COMO CSS
+
+Arquivos estáticos são recursos como folhas de estilo, JavaScript e imagens.
+No app `recipes`, eles podem ficar em `recipes/static/recipes/`. Por exemplo,
+o arquivo `recipes/static/recipes/css/styles.css` pode ser carregado no
+template assim:
+
+```django
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="{% static 'recipes/css/styles.css' %}">
+  <title>Recipes</title>
+</head>
+```
+
+`{% load static %}` habilita a tag `{% static %}` no template. Ela gera a URL
+do arquivo de acordo com a configuração `STATIC_URL`; passe a ela o caminho
+relativo à pasta `static/`, sem começar com `/static/`. O nome e o caminho
+precisam corresponder ao arquivo existente: neste exemplo, `styles.css` está
+dentro de `recipes/static/recipes/css/`.
 
 ### 3. Conecte a view à URL
 

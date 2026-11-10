@@ -7,4 +7,10 @@ def home(request):
         'name':  "chris",
     })
 
+# aonde vai as "urls" e tals
+
+def recipe(request, id):
+    return render(request, 'recipes/pages/recipe-view.html', context={
+        'name':  "chris",
+    })
 
