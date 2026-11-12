@@ -1,16 +1,17 @@
 
 from django.shortcuts import render
-
+from recipes.utils.factory import make_recipe
 
 def home(request):
     return render(request, 'recipes/pages/home.html', context={
-        'name':  "chris",
+        'recipes': [make_recipe() for _ in range(10)],
     })
 
 # aonde vai as "urls" e tals
 
 def recipe(request, id):
     return render(request, 'recipes/pages/recipe-view.html', context={
-        'name':  "chris",
+        'recipe': make_recipe(),
+        'is_detail_page': True,
+        
     })
-
