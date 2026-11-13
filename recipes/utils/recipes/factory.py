@@ -16,7 +16,7 @@ RECIPE_IMAGES = (
 
 def make_recipe():
     return {
-        'title': fake.sentence(nb_words=6),
+        'title':fake.random_number(digits=2, fix_len=True),
         'description': fake.sentence(nb_words=12),
         'preparation_time': fake.random_number(digits=2, fix_len=True),
         'preparation_time_unit': 'Minutos',

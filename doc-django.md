@@ -117,6 +117,34 @@ responsabilidades do app:
   `python3 manage.py makemigrations` e aplica as alterações com
   `python3 manage.py migrate`.
 
+## GERAR MIGRAÇÕES
+
+Depois de criar ou alterar modelos, execute na pasta que contém `manage.py`:
+
+```bash
+python3 manage.py makemigrations
+```
+
+Esse comando cria os arquivos de migração correspondentes às alterações nos
+modelos.
+
+Para aplicar as migrações e atualizar o banco de dados, execute:
+
+```bash
+python3 manage.py migrate
+```
+
+## CRIAR UM SUPERUSUÁRIO
+
+Para criar uma conta de administrador do Django, execute na pasta que contém
+`manage.py`:
+
+```bash
+python3 manage.py createsuperuser
+```
+
+Siga as instruções no terminal para informar o nome de usuário, o e-mail e a
+senha. Depois, use essa conta para acessar `/admin/`.
 
 # PASTAS E ARQUIVOS DO PROJETO DJANGO
 
