@@ -21,13 +21,30 @@ class Recipe(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=False)
-    cover = models.ImageField(upload_to="recipes/convers/%Y/%m/%d/")
+    cover = models.ImageField(upload_to="recipes/convers/%Y/%m/%d/", blank=True, default='')
     category = models.ForeignKey(
-        Category, on_delete=models.SET_NULL, null=True
+        Category, on_delete=models.SET_NULL, null=True, blank = True,
+        default = None,
     )
     author = models.ForeignKey(
         User, on_delete=models.SET_NULL, null=True
     )
+
+    @property
+    def preparation_steps(self):
+        return self.preparations_steps
+
+    @preparation_steps.setter
+    def preparation_steps(self, value):
+        self.preparations_steps = value
+
+    @property
+    def preparation_steps_is_html(self):
+        return self.preparations_steps_is_html
+
+    @preparation_steps_is_html.setter
+    def preparation_steps_is_html(self, value):
+        self.preparations_steps_is_html = value
 
     def __str__(self):
         return self.title
