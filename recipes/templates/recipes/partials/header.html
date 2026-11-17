@@ -1,10 +1,31 @@
 <header class="main-header-container">
     <div class="main-header container">
+        <button
+            class="back-button"
+            type="button"
+            aria-label="Voltar para a página anterior"
+            title="Voltar"
+            data-home-url="{% url 'recipes:home' %}"
+        >
+            <i class="fas fa-arrow-left" aria-hidden="true"></i>
+            <span>Voltar</span>
+        </button>
         <h1>
-            <a class="main-logo" href="{% url "recipes:home" %}">
+            <a class="main-logo" href="{% url 'recipes:home' %}">
                 <i class="fas fa-utensils main-logo-icon"></i>
                 <span class="main-logo-text">Recipes</span>
             </a>
         </h1>
     </div>
 </header>
+
+<script>
+    {% comment %} esse comando de "voltar" ele é um codigo base só pra pdr ficar melhor {% endcomment %}
+    document.querySelector('.back-button').addEventListener('click', function () {
+        if (window.history.length > 1) {
+            window.history.back();
+        } else {
+            window.location.href = this.dataset.homeUrl;
+        }
+    });
+</script>

@@ -46,7 +46,7 @@ direto à explicação.
 
 - [7. HTML que conversa com Django](#7-html-que-conversa-com-django)
   - [7.1 Preparar o app e os templates](#71-preparar-o-app-e-os-templates)
-  - [7.2 Ligar as URLs do projeto às URLs do app](#72-ligar-as-urls-do-projeto-às-urls-do-app)
+  - [7.2 Ligar as URLs do project às URLs do app](#72-ligar-as-urls-do-project-às-urls-do-app)
   - [7.3 Criar uma view que renderiza HTML](#73-criar-uma-view-que-renderiza-html)
   - [7.4 Usar dados da view no template](#74-usar-dados-da-view-no-template)
 - [8. Como o Django entrega uma página](#8-como-o-django-entrega-uma-página)
@@ -274,7 +274,7 @@ Use tabelas para dados tabulares, não para organizar o layout da página.
 ### Links
 
 ```html
-<a href="/sobre/">Conheça o projeto</a>
+<a href="/sobre/">Conheça o project</a>
 <a href="https://www.djangoproject.com/">Site do Django</a>
 <a href="#ingredientes">Ir para ingredientes</a>
 ```
@@ -296,7 +296,7 @@ Em um template Django, use um link com a tag `{% url %}` e uma classe CSS para
 dar aparência de botão:
 
 ```django
-<a class="botao" href="{% url 'sobre' %}">Conheça o projeto</a>
+<a class="botao" href="{% url 'sobre' %}">Conheça o project</a>
 ```
 
 O nome `'sobre'` deve existir na configuração de URLs do app. Por exemplo, em
@@ -467,13 +467,13 @@ uma view e a view retorna uma resposta. Quando essa resposta é uma página,
 normalmente a view renderiza um template.
 
 ```text
-Navegador → projeto/urls.py → recipes/urls.py → view → template HTML → navegador
+Navegador → project/urls.py → recipes/urls.py → view → template HTML → navegador
 ```
 
 ### 7.1 Preparar o app e os templates
 
 Confirme que o app está registrado em `INSTALLED_APPS`, no arquivo
-`projeto/settings.py`:
+`project/settings.py`:
 
 ```python
 INSTALLED_APPS = [
@@ -482,7 +482,7 @@ INSTALLED_APPS = [
 ]
 ```
 
-Com `APP_DIRS = True` nas configurações de templates do projeto, uma estrutura
+Com `APP_DIRS = True` nas configurações de templates do project, uma estrutura
 comum é guardar os templates dentro do app:
 
 ```text
@@ -499,9 +499,9 @@ recipes/
 O subdiretório `templates/recipes/` evita conflitos quando diferentes apps
 têm templates com nomes iguais.
 
-### 7.2 Ligar as URLs do projeto às URLs do app
+### 7.2 Ligar as URLs do project às URLs do app
 
-No arquivo `projeto/urls.py`:
+No arquivo `project/urls.py`:
 
 ```python
 from django.contrib import admin
@@ -590,7 +590,7 @@ No arquivo `recipes/templates/recipes/home.html`:
 Este é o caminho completo para abrir a página inicial:
 
 1. A pessoa acessa `/` no navegador.
-2. `projeto/urls.py` inclui `recipes.urls`.
+2. `project/urls.py` inclui `recipes.urls`.
 3. `recipes/urls.py` encontra a rota `''` e chama `views.home`.
 4. `home(request)` prepara dados e chama `render()`.
 5. Django processa o template e substitui as variáveis.
@@ -771,7 +771,7 @@ sem precisar atualizar cada template.
 
 ## 13. CSS e arquivos estáticos
 
-CSS, imagens e JavaScript do projeto são arquivos estáticos. Uma estrutura
+CSS, imagens e JavaScript do project são arquivos estáticos. Uma estrutura
 comum dentro do app:
 
 ```text
@@ -866,7 +866,7 @@ configure a coleta e o servidor de arquivos estáticos conforme o ambiente.
 
 **O Django não encontra uma URL**
 
-- Confira se `projeto/urls.py` inclui `recipes.urls`.
+- Confira se `project/urls.py` inclui `recipes.urls`.
 - Confira se o `path()` está em `urlpatterns` e se o caminho termina com a
   barra esperada.
 - Se usar `{% url 'home' %}`, confirme que a rota tem `name='home'`.
@@ -944,7 +944,7 @@ class Receita(models.Model):
 - `__str__()` define uma representação legível do objeto.
 
 O exemplo associa receitas a usuários para que cada pessoa possa gerenciar as
-próprias receitas. Se o projeto ainda não tiver autenticação, pode-se começar
+próprias receitas. Se o project ainda não tiver autenticação, pode-se começar
 com outro modelo sem `autor`, mas as operações de criação e edição abaixo usam
 login e autoria.
 
@@ -1276,7 +1276,7 @@ Django inclui views de autenticação para login, logout e recuperação de senh
 Não implemente armazenamento ou comparação manual de senhas; use o sistema de
 autenticação do Django, que aplica o tratamento seguro apropriado.
 
-Inclua as rotas de autenticação em `projeto/urls.py`:
+Inclua as rotas de autenticação em `project/urls.py`:
 
 ```python
 from django.contrib import admin
@@ -1303,7 +1303,7 @@ esse caminho porque `APP_DIRS=True` e o app está instalado):
 </form>
 ```
 
-Configure destinos após login e logout em `projeto/settings.py`:
+Configure destinos após login e logout em `project/settings.py`:
 
 ```python
 LOGIN_URL = '/accounts/login/'
@@ -1356,14 +1356,14 @@ Para o `ImageField` do model, instale Pillow:
 python -m pip install Pillow
 ```
 
-Configure `projeto/settings.py`:
+Configure `project/settings.py`:
 
 ```python
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 ```
 
-Sirva mídia localmente apenas durante o desenvolvimento, em `projeto/urls.py`:
+Sirva mídia localmente apenas durante o desenvolvimento, em `project/urls.py`:
 
 ```python
 from django.conf import settings

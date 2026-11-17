@@ -2,11 +2,11 @@
 
 ## Navegação rápida
 
-🟢 **Preparar e executar o projeto**
+🟢 **Preparar e executar o project**
 
 - [Criar o ambiente virtual](#criar-uma-venv)
 - [Ativar o ambiente virtual](#iniciar-a-venv)
-- [Criar o projeto Django](#criar-a-base-simples-do-django)
+- [Criar o project Django](#criar-a-base-simples-do-django)
 - [Instalar o Django](#comando-para-instalar-o-django)
 - [Iniciar o servidor](#comando-para-poder-rodar-o-django-web)
 
@@ -15,9 +15,9 @@
 - [Criar o app `recipes` com `startapp`](#criar-um-app-django)
 - [Entender os arquivos Python do app](#arquivos-python-do-app-recipes)
 
-🟣 **Conhecer a estrutura do projeto**
+🟣 **Conhecer a estrutura do project**
 
-- [Pastas e arquivos do projeto](#pastas-e-arquivos-do-projeto-django)
+- [Pastas e arquivos do project](#pastas-e-arquivos-do-project-django)
 
 🟠 **Rotas e respostas**
 
@@ -47,7 +47,7 @@
 
 # CRIAR A BASE "SIMPLES" DO DJANGO
 
-- django-admin startproject projeto 
+- django-admin startproject project 
 
 # COMANDO PARA INSTALAR O DJANGO
 
@@ -59,9 +59,9 @@
 
 # CRIAR UM APP DJANGO
 
-Um app é uma parte do projeto responsável por um conjunto de funcionalidades.
+Um app é uma parte do project responsável por um conjunto de funcionalidades.
 Por exemplo, o app `recipes` pode cuidar das receitas do site. Criar um app
-separa o código por assunto e facilita a organização do projeto.
+separa o código por assunto e facilita a organização do project.
 
 Execute o comando na pasta onde está o arquivo `manage.py`:
 
@@ -72,16 +72,16 @@ python3 manage.py startapp recipes
 O comando é dividido assim:
 
 - `python3` executa o programa Python.
-- `manage.py` dá acesso aos comandos do projeto Django atual.
+- `manage.py` dá acesso aos comandos do project Django atual.
 - `startapp` pede ao Django para criar a estrutura inicial de um app.
 - `recipes` é o nome do app; esse nome também será o da pasta criada.
 
 O Django cria a pasta `recipes/` com arquivos iniciais, como `models.py`,
 `views.py`, `admin.py` e `apps.py`, além da pasta `migrations/`. O comando cria
-os arquivos, mas ainda é preciso avisar ao projeto que ele deve carregar esse
+os arquivos, mas ainda é preciso avisar ao project que ele deve carregar esse
 app.
 
-Para registrar o app, abra `projeto/settings.py` e adicione
+Para registrar o app, abra `project/settings.py` e adicione
 `'recipes.apps.RecipesConfig',` à lista `INSTALLED_APPS`. Faça isso uma única
 vez para cada app. O comando `startapp` também deve ser executado apenas uma
 vez para esse nome; se a pasta `recipes/` já existir, não o execute novamente.
@@ -146,15 +146,15 @@ python3 manage.py createsuperuser
 Siga as instruções no terminal para informar o nome de usuário, o e-mail e a
 senha. Depois, use essa conta para acessar `/admin/`.
 
-# PASTAS E ARQUIVOS DO PROJETO DJANGO
+# PASTAS E ARQUIVOS DO project DJANGO
 
-Estrutura criada com `django-admin startproject projeto .`:
+Estrutura criada com `django-admin startproject project .`:
 
 ```text
-curso_Django_pago-projeto1/
-├── .venv/                 # Ambiente virtual: guarda o Python e as bibliotecas do projeto
-├── projeto/               # Pacote principal de configuração do Django
-│   ├── __init__.py        # Marca projeto como pacote Python
+curso_Django_pago-project1/
+├── .venv/                 # Ambiente virtual: guarda o Python e as bibliotecas do project
+├── project/               # Pacote principal de configuração do Django
+│   ├── __init__.py        # Marca project como pacote Python
 │   ├── asgi.py            # Ponto de entrada para servidores ASGI e aplicações assíncronas
 │   ├── settings.py        # Configurações: apps, banco de dados, idioma, segurança e arquivos estáticos
 │   ├── urls.py            # Rotas: associa endereços web às views; inicialmente contém /admin/
@@ -164,8 +164,8 @@ curso_Django_pago-projeto1/
 └── manage.py              # Utilitário para executar comandos Django, como runserver e migrate
 ```
 
-O ponto final (`.`) no comando `django-admin startproject projeto .` faz o
-Django criar `manage.py` e a pasta `projeto/` dentro da pasta atual.
+O ponto final (`.`) no comando `django-admin startproject project .` faz o
+Django criar `manage.py` e a pasta `project/` dentro da pasta atual.
 
 Outros itens que podem aparecer:
 
@@ -211,11 +211,11 @@ rota nomeada.
 
 ## SEPARAR ROTAS COM `include()`
 
-Em projetos com vários apps, é útil deixar cada app responsável por suas
-próprias rotas. O arquivo `projeto/urls.py` fica com as rotas principais e usa
+Em projects com vários apps, é útil deixar cada app responsável por suas
+próprias rotas. O arquivo `project/urls.py` fica com as rotas principais e usa
 `include()` para encaminhar as demais para o arquivo de URLs do app.
 
-No arquivo `projeto/urls.py`, importe `include` e conecte as rotas de
+No arquivo `project/urls.py`, importe `include` e conecte as rotas de
 `recipes`:
 
 ```python
@@ -242,7 +242,7 @@ urlpatterns = [
 ```
 
 `include('recipes.urls')` diz ao Django para continuar procurando a rota em
-`recipes/urls.py`. Como o prefixo usado no projeto é `''` (vazio), os caminhos
+`recipes/urls.py`. Como o prefixo usado no project é `''` (vazio), os caminhos
 do app ficam disponíveis como `/`, `/sobre/` e `/contato/`. Se, por exemplo,
 o prefixo fosse `'receitas/'`, eles ficariam `/receitas/`,
 `/receitas/sobre/` e `/receitas/contato/`.
@@ -269,7 +269,7 @@ def recipe(request, id):
 Para consultar mais detalhes sobre conversores e parâmetros de URL, veja a
 [documentação oficial sobre padrões de URL do Django 3.2](https://docs.djangoproject.com/en/3.2/topics/http/urls/#path-converters).
 
-Assim, `projeto/urls.py` centraliza a ligação entre o projeto e os apps, e cada
+Assim, `project/urls.py` centraliza a ligação entre o project e os apps, e cada
 app pode manter suas rotas em seu próprio `urls.py`.
 
 ## USAR `render()` PARA ENVIAR DADOS AO HTML
@@ -418,7 +418,7 @@ qual arquivo deve ser incluído. O template incluído recebe o contexto atual po
 padrão, então pode acessar variáveis como `{{ name }}` que foram enviadas pela
 view.
 
-Este uso é diferente de `include()` em `projeto/urls.py`: a função Python
+Este uso é diferente de `include()` em `project/urls.py`: a função Python
 `include()` encaminha rotas para outro arquivo `urls.py`, enquanto
 `{% include %}` reutiliza um template HTML.
 
@@ -459,7 +459,7 @@ urlpatterns = [
 ]
 ```
 
-Se `projeto/urls.py` incluir `recipes.urls` com
+Se `project/urls.py` incluir `recipes.urls` com
 `path('', include('recipes.urls'))`, a página será exibida ao acessar `/`.
 
 **Resumo do fluxo:** o navegador solicita uma URL → Django encontra a rota →
@@ -490,7 +490,7 @@ Django. `HttpResponse` devolve um texto ao navegador. Para usar essa view, o
    de uma linha executável para criar um breakpoint (ponto vermelho).
 4. Abra **Executar e Depurar** na barra lateral, selecione **Python: Django**
    e pressione `F5`. A configuração em `.vscode/launch.json` inicia
-   `curso_Django_pago-projeto1/manage.py runserver 8002`.
+   `curso_Django_pago-project1/manage.py runserver 8002`.
 5. Acesse `http://127.0.0.1:8002/` no navegador. Quando a execução atingir um
    breakpoint, ela pausa no VS Code; use **Continuar**, **Passo a passo** e
    **Parar** na barra de depuração para controlar a execução.

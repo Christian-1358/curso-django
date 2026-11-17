@@ -38,13 +38,5 @@ class Recipe(models.Model):
     def preparation_steps(self, value):
         self.preparations_steps = value
 
-    @property
-    def preparation_steps_is_html(self):
-        return self.preparations_steps_is_html
-
-    @preparation_steps_is_html.setter
-    def preparation_steps_is_html(self, value):
-        self.preparations_steps_is_html = value
-
     def __str__(self):
         return self.title

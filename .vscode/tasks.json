@@ -4,9 +4,9 @@
 		{
 			"label": "Testar servidor Django na porta 8001",
 			"type": "shell",
-			"command": "/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/.venv/bin/python",
+			"command": "/mnt/disco2/aprende-python_curso/curso_Django_pago-project1/.venv/bin/python",
 			"args": [
-				"/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/manage.py",
+				"/mnt/disco2/aprende-python_curso/curso_Django_pago-project1/manage.py",
 				"runserver",
 				"127.0.0.1:8001",
 				"--noreload"
@@ -17,9 +17,9 @@
 		{
 			"label": "Testar Django na porta 8002",
 			"type": "shell",
-			"command": "/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/.venv/bin/python",
+			"command": "/mnt/disco2/aprende-python_curso/curso_Django_pago-project1/.venv/bin/python",
 			"args": [
-				"/mnt/disco2/aprende-python_curso/curso_Django_pago-projeto1/manage.py",
+				"/mnt/disco2/aprende-python_curso/curso_Django_pago-project1/manage.py",
 				"runserver",
 				"127.0.0.1:8002",
 				"--noreload"
