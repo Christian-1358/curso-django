@@ -63,6 +63,118 @@
 			],
 			"isBackground": false,
 			"problemMatcher": []
+		},
+		{
+			"label": "Verificar receitas da vóvó",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from recipes.models import Recipe; qs=Recipe.objects.filter(title__iexact='receita da vovo'); print('COUNT=', qs.count()); print(list(qs.values_list('id','title')[:30]))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Contar todas as receitas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from recipes.models import Recipe; print(Recipe.objects.count())\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Inspecionar dados das receitas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from recipes.models import Recipe,Category; print(list(Recipe.objects.values_list('id','title','cover')[:40])); print(list(Category.objects.values_list('id','name')))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar autores disponíveis",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from django.contrib.auth.models import User; print(list(User.objects.values_list('id','username')))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Atualizar todas as receitas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell < /home/developer/.copilot/session-state/14415d7e-33d8-4c42-b52b-64dbce017f3f/files/update_recipes.py",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar atualização das receitas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from recipes.models import Recipe; print(list(Recipe.objects.values_list('id','title','preparation_time','servings','preparations_steps_is_html','cover')[:24])); print('HTML=',Recipe.objects.filter(preparations_steps_is_html=True).count(),'NORMAL=',Recipe.objects.filter(preparations_steps_is_html=False).count())\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Baixar fotos de receitas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell < /home/developer/.copilot/session-state/14415d7e-33d8-4c42-b52b-64dbce017f3f/files/download_recipe_photos.py",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Aplicar migração de créditos",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py migrate recipes",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Baixar fotos individuais",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell < /home/developer/.copilot/session-state/14415d7e-33d8-4c42-b52b-64dbce017f3f/files/download_recipe_photos.py",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Completar download das capas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell < /home/developer/.copilot/session-state/14415d7e-33d8-4c42-b52b-64dbce017f3f/files/download_recipe_photos.py",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Tentar imagens alternativas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell < /home/developer/.copilot/session-state/14415d7e-33d8-4c42-b52b-64dbce017f3f/files/download_recipe_photos.py",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Verificar imagens das receitas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from recipes.models import Recipe; print('total=',Recipe.objects.count(),'com_imagem=',Recipe.objects.exclude(cover='').count(),'com_credito=',Recipe.objects.exclude(cover_credit='').count()); print(list(Recipe.objects.values_list('id','title','cover','cover_credit')[-4:]))\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validar arquivos de capas",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py shell -c \"from pathlib import Path; from recipes.models import Recipe; recipes=list(Recipe.objects.all()); missing=[r.id for r in recipes if not (Path('media') / r.cover.name).is_file()]; print('total=',len(recipes),'arquivos_unicos=',len({r.cover.name for r in recipes}),'sem_credito=',sum(not r.cover_credit for r in recipes),'sem_arquivo=',missing)\"",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Validar configuração Django",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py check && ./.venv/bin/python manage.py makemigrations --check --dry-run",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Executar teste do app",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py test recipes.test.test_recipe_model_category",
+			"isBackground": false,
+			"problemMatcher": []
+		},
+		{
+			"label": "Executar teste da busca",
+			"type": "shell",
+			"command": "./.venv/bin/python manage.py test 'recipes.test.test_recipe_ urls.RecipeURLsTest.test_recipe_search_url_is_correct'",
+			"isBackground": false,
+			"problemMatcher": []
 		}
 	]
 }

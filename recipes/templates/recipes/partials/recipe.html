@@ -11,6 +11,17 @@
                 onerror="this.onerror=null;this.src='{% static 'recipes/images/recipe-placeholder.svg' %}'"
             >
         </a>
+        {% if is_detail_page and recipe.cover_credit %}
+            <p class="recipe-cover-credit">
+                Imagem:
+                <a href="{{ recipe.cover_credit_url }}" target="_blank" rel="noopener noreferrer">
+                    {{ recipe.cover_credit }}
+                </a>
+                {% if recipe.cover_license_url %}
+                    <a href="{{ recipe.cover_license_url }}" target="_blank" rel="noopener noreferrer">Licença</a>
+                {% endif %}
+            </p>
+        {% endif %}
     </div>
     {% endif %}
 
